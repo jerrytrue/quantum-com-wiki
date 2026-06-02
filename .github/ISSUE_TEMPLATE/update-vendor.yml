@@ -1,0 +1,108 @@
+name: Update or add vendor
+description: Submit info for a quantum computing vendor not yet in the tracker, or update an existing one.
+title: "[Vendor] <name>"
+labels: ["vendor-update"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      options:
+        - label: I checked that this vendor is not already in vendors.json (or this is an update to an existing entry)
+          required: true
+  - type: input
+    id: name
+    attributes:
+      label: Vendor name
+    validations:
+      required: true
+  - type: dropdown
+    id: physics
+    attributes:
+      label: Physics technology
+      options:
+        - Superconducting
+        - Ion Trap
+        - Photonic
+        - Neutral Atom
+        - Topological
+        - Silicon Spin
+        - NV-center
+        - Agnostic (N/A)
+    validations:
+      required: true
+  - type: dropdown
+    id: stack
+    attributes:
+      label: Stack level (select all that apply)
+      multiple: true
+      options:
+        - Full-Stack
+        - Qubit HW only
+        - Control / Cryo HW
+        - Software / Algo
+        - Cloud Service
+    validations:
+      required: true
+  - type: dropdown
+    id: region
+    attributes:
+      label: Region
+      options:
+        - USA
+        - Europe
+        - Asia
+        - Canada
+    validations:
+      required: true
+  - type: input
+    id: founded
+    attributes:
+      label: Founded year
+      placeholder: "e.g. 2018"
+    validations:
+      required: true
+  - type: input
+    id: hq
+    attributes:
+      label: HQ location
+      placeholder: "City, Country"
+    validations:
+      required: true
+  - type: textarea
+    id: milestone_en
+    attributes:
+      label: Latest milestone (English)
+    validations:
+      required: true
+  - type: textarea
+    id: milestone_zh
+    attributes:
+      label: 最新里程碑 (中文)
+  - type: textarea
+    id: desc_en
+    attributes:
+      label: Description (English)
+    validations:
+      required: true
+  - type: textarea
+    id: desc_zh
+    attributes:
+      label: 簡介 (中文)
+  - type: input
+    id: website
+    attributes:
+      label: Website URL
+  - type: input
+    id: news_query
+    attributes:
+      label: Google News search query
+      placeholder: "e.g. IonQ quantum"
+  - type: input
+    id: ticker
+    attributes:
+      label: Stock ticker (if publicly traded)
+      placeholder: "e.g. IONQ"
+  - type: textarea
+    id: sources
+    attributes:
+      label: Additional context / sources (links to press releases, arXiv papers)
