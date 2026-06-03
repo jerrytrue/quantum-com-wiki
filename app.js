@@ -8,7 +8,7 @@ const state = {
   lang: localStorage.getItem('qvt-lang') || 'en',
   theme: localStorage.getItem('qvt-theme') || 'dark',
   view: localStorage.getItem('qvt-view') || 'card',
-  filters: { physics: new Set(), stack: new Set(), region: new Set() },
+  filters: { physics: new Set(), stack: new Set(), region: new Set(), trading: new Set(), era: new Set() },
   search: '',
   sort: 'name',
   lastUpdated: '',
@@ -18,6 +18,18 @@ const state = {
 const PHYSICS_OPTIONS = ['superconducting','iontrap','photonic','neutralatom','topological','siliconspin','nvcenter','agnostic'];
 const STACK_OPTIONS   = ['full','qubit','control','software','cloud'];
 const REGION_OPTIONS  = ['usa','europe','asia','canada'];
+const TRADING_OPTIONS = ['public','private'];
+const ERA_OPTIONS     = ['legacy','modern','recent'];
+
+// Derive bucket keys from vendor properties for filters that aren't direct fields.
+function eraOf(vendor) {
+  if (vendor.founded <= 2009) return 'legacy';
+  if (vendor.founded <= 2017) return 'modern';
+  return 'recent';
+}
+function tradingOf(vendor) {
+  return vendor.ticker ? 'public' : 'private';
+}
 
 /* ---------- Boot ---------- */
 async function boot() {
@@ -54,9 +66,13 @@ function buildFilters() {
   const physBox = document.getElementById('filter-physics');
   const stackBox = document.getElementById('filter-stack');
   const regionBox = document.getElementById('filter-region');
+  const tradingBox = document.getElementById('filter-trading');
+  const eraBox = document.getElementById('filter-era');
 
   const countBy = (key, val) => state.vendors.filter(v => {
     if (key === 'stack') return v.stack.includes(val);
+    if (key === 'trading') return tradingOf(v) === val;
+    if (key === 'era') return eraOf(v) === val;
     return v[key] === val;
   }).length;
 
@@ -76,6 +92,8 @@ function buildFilters() {
   PHYSICS_OPTIONS.forEach(p => physBox.appendChild(makeItem('physics', p)));
   STACK_OPTIONS.forEach(s => stackBox.appendChild(makeItem('stack', s)));
   REGION_OPTIONS.forEach(r => regionBox.appendChild(makeItem('region', r)));
+  if (tradingBox) TRADING_OPTIONS.forEach(t => tradingBox.appendChild(makeItem('trading', t)));
+  if (eraBox)     ERA_OPTIONS.forEach(e => eraBox.appendChild(makeItem('era', e)));
 }
 
 function onFilterChange(e) {
@@ -131,6 +149,8 @@ function getFiltered() {
     if (filters.physics.size && !filters.physics.has(v.physics)) return false;
     if (filters.stack.size && !v.stack.some(s => filters.stack.has(s))) return false;
     if (filters.region.size && !filters.region.has(v.region)) return false;
+    if (filters.trading.size && !filters.trading.has(tradingOf(v))) return false;
+    if (filters.era.size && !filters.era.has(eraOf(v))) return false;
     if (search) {
       const desc = (v.desc[state.lang] || '').toLowerCase();
       const milestone = (v.milestone[state.lang] || '').toLowerCase();
