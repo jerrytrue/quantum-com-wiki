@@ -342,9 +342,13 @@ function stockChip(ticker) {
 }
 
 /* ---------- RSS (Google News aggregate) ---------- */
+/* ---------- RSS news carousel: 3 items per page, rotate every 5s ---------- */
+const RSS_PAGE_SIZE = 3;
+const RSS_ROTATE_MS = 5000;
+const rssState = { items: [], page: 0, timer: null, paused: false };
+
 async function loadRSS() {
   const box = document.getElementById('rssFeed');
-  // Aggregate query across all vendors — pull top headlines via rss2json proxy
   const query = '("quantum computing" OR "quantum computer" OR qubit)';
   const url = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
   // Note: `count` param requires an rss2json API key; we omit it and slice client-side.
@@ -357,7 +361,32 @@ async function loadRSS() {
       box.innerHTML = `<p class="rss-error">${t('noNews')}</p>`;
       return;
     }
-    box.innerHTML = data.items.slice(0, 8).map(item => {
+    rssState.items = data.items.slice(0, 9);  // up to 3 pages of 3
+    rssState.page = 0;
+    renderRssPage();
+    wireRssCarousel();
+    startRssTimer();
+  } catch (e) {
+    console.warn('RSS load failed:', e);
+    box.innerHTML = `<p class="rss-error">${t('newsError')}</p>`;
+  }
+}
+
+function totalRssPages() {
+  return Math.max(1, Math.ceil(rssState.items.length / RSS_PAGE_SIZE));
+}
+
+function renderRssPage() {
+  const box = document.getElementById('rssFeed');
+  const ind = document.getElementById('rssPageIndicator');
+  if (!box) return;
+
+  const start = rssState.page * RSS_PAGE_SIZE;
+  const pageItems = rssState.items.slice(start, start + RSS_PAGE_SIZE);
+
+  box.classList.add('fading');
+  setTimeout(() => {
+    box.innerHTML = pageItems.map(item => {
       const date = new Date(item.pubDate).toLocaleDateString();
       const src = item.author || (item.source && item.source.name) || '';
       return `
@@ -367,9 +396,46 @@ async function loadRSS() {
         </a>
       `;
     }).join('');
-  } catch (e) {
-    console.warn('RSS load failed:', e);
-    box.innerHTML = `<p class="rss-error">${t('newsError')}</p>`;
+    box.classList.remove('fading');
+  }, 180);
+
+  if (ind) ind.textContent = `${rssState.page + 1} / ${totalRssPages()}`;
+}
+
+function rssGoto(newPage) {
+  const total = totalRssPages();
+  rssState.page = ((newPage % total) + total) % total;
+  renderRssPage();
+}
+function rssNext() { rssGoto(rssState.page + 1); }
+function rssPrev() { rssGoto(rssState.page - 1); }
+
+function startRssTimer() {
+  stopRssTimer();
+  rssState.timer = setInterval(() => { if (!rssState.paused) rssNext(); }, RSS_ROTATE_MS);
+}
+function stopRssTimer() {
+  if (rssState.timer) { clearInterval(rssState.timer); rssState.timer = null; }
+}
+
+function wireRssCarousel() {
+  const strip = document.getElementById('rssBottom');
+  const prevBtn = document.getElementById('rssPrev');
+  const nextBtn = document.getElementById('rssNext');
+
+  // Avoid double-binding if loadRSS runs again
+  if (strip && !strip.dataset.wired) {
+    strip.dataset.wired = '1';
+    strip.addEventListener('mouseenter', () => { rssState.paused = true; });
+    strip.addEventListener('mouseleave', () => { rssState.paused = false; });
+  }
+  if (prevBtn && !prevBtn.dataset.wired) {
+    prevBtn.dataset.wired = '1';
+    prevBtn.addEventListener('click', () => { rssPrev(); startRssTimer(); });
+  }
+  if (nextBtn && !nextBtn.dataset.wired) {
+    nextBtn.dataset.wired = '1';
+    nextBtn.addEventListener('click', () => { rssNext(); startRssTimer(); });
   }
 }
 
