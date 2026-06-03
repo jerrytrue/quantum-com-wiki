@@ -91,11 +91,15 @@
     </section>
   </main>
 
-  <!-- ============= BOTTOM: RSS NEWS ============= -->
-  <section class="rss-bottom">
+  <!-- ============= BOTTOM: RSS NEWS (carousel, 3 per page, 5s rotation) ============= -->
+  <section class="rss-bottom" id="rssBottom">
     <div class="rss-bottom-header">
       <h2>📡 <span data-i18n="live">Live News</span></h2>
-      <span class="rss-hint" data-i18n="sources">Sources</span>
+      <div class="rss-controls">
+        <button class="rss-nav" id="rssPrev" title="Previous">◀</button>
+        <span class="rss-page-indicator" id="rssPageIndicator">—</span>
+        <button class="rss-nav" id="rssNext" title="Next">▶</button>
+      </div>
     </div>
     <div id="rssFeed" class="rss-feed">
       <p class="rss-loading" data-i18n="loadingNews">Loading latest news...</p>
@@ -109,6 +113,6 @@
     &nbsp;·&nbsp; <span data-i18n="sources">Sources</span>
   </footer>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
