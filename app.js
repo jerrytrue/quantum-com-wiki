@@ -35,6 +35,14 @@ function eraOf(vendor) {
 function tradingOf(vendor) {
   return vendor.ticker ? 'public' : 'private';
 }
+// Country display: look up the i18n string for the current language; fall back to raw value
+// if no translation exists (e.g. a newly added country we haven't translated yet).
+function countryLabel(vendor) {
+  if (!vendor.country) return '';
+  const key = 'country_' + vendor.country.toLowerCase().replace(/\s+/g, '');
+  const dict = state.i18n[state.lang] || {};
+  return dict[key] || vendor.country;
+}
 
 /* ---------- Boot ---------- */
 async function boot() {
@@ -252,7 +260,8 @@ function getFiltered() {
     if (search) {
       const desc = (v.desc[state.lang] || '').toLowerCase();
       const milestone = (v.milestone[state.lang] || '').toLowerCase();
-      const hay = [v.name, v.physics, v.hq, v.country || '', desc, milestone, ...v.stack].join(' ').toLowerCase();
+      // Include both raw country and translated label so searches like "美國" hit USA vendors.
+      const hay = [v.name, v.physics, v.hq, v.country || '', countryLabel(v), desc, milestone, ...v.stack].join(' ').toLowerCase();
       if (!hay.includes(search)) return false;
     }
     return true;
@@ -335,7 +344,7 @@ function renderTable(list) {
       <td class="name">${nameCell(v)}</td>
       <td><span class="chip chip-physics" data-physics="${v.physics}" title="${t('click_physics_hint')}">${t('physics_' + v.physics)}</span></td>
       <td>${v.stack.map(chipForStack).join(' ')}</td>
-      <td>${v.country || t('region_' + v.region)}</td>
+      <td>${countryLabel(v)}</td>
       <td>${stockChip(v.ticker)}</td>
       <td>${v.founded}</td>
       <td>${v.milestone[state.lang] || v.milestone.en}</td>
