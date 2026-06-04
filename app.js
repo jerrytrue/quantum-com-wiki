@@ -20,7 +20,9 @@ const state = {
 
 const PHYSICS_OPTIONS = ['superconducting','iontrap','photonic','neutralatom','topological','siliconspin','nvcenter','agnostic'];
 const STACK_OPTIONS   = ['full','qubit','control','software','cloud'];
-const REGION_OPTIONS  = ['usa','europe','asia','canada','oceania'];
+// Continents (five-continent model). Africa is listed for completeness but the filter
+// UI skips any option with zero matches, so it stays hidden until we add an African vendor.
+const REGION_OPTIONS  = ['americas','asia','europe','oceania','africa'];
 const TRADING_OPTIONS = ['public','private'];
 const ERA_OPTIONS     = ['legacy','modern','recent'];
 
@@ -82,23 +84,26 @@ function buildFilters() {
   }).length;
 
   const makeItem = (group, val) => {
+    const count = countBy(group, val);
+    if (count === 0) return null;   // hide empty buckets (e.g. continents with no vendors yet)
     const id = `f-${group}-${val}`;
     const div = document.createElement('label');
     div.className = 'filter-item';
     div.innerHTML = `
       <input type="checkbox" id="${id}" data-group="${group}" data-val="${val}" />
       <span data-i18n="${group}_${val}">${val}</span>
-      <span class="count">${countBy(group, val)}</span>
+      <span class="count">${count}</span>
     `;
     div.querySelector('input').addEventListener('change', onFilterChange);
     return div;
   };
+  const appendIfNotNull = (parent, node) => { if (node) parent.appendChild(node); };
 
-  PHYSICS_OPTIONS.forEach(p => physBox.appendChild(makeItem('physics', p)));
-  STACK_OPTIONS.forEach(s => stackBox.appendChild(makeItem('stack', s)));
-  REGION_OPTIONS.forEach(r => regionBox.appendChild(makeItem('region', r)));
-  if (tradingBox) TRADING_OPTIONS.forEach(t => tradingBox.appendChild(makeItem('trading', t)));
-  if (eraBox)     ERA_OPTIONS.forEach(e => eraBox.appendChild(makeItem('era', e)));
+  PHYSICS_OPTIONS.forEach(p => appendIfNotNull(physBox, makeItem('physics', p)));
+  STACK_OPTIONS.forEach(s => appendIfNotNull(stackBox, makeItem('stack', s)));
+  REGION_OPTIONS.forEach(r => appendIfNotNull(regionBox, makeItem('region', r)));
+  if (tradingBox) TRADING_OPTIONS.forEach(t => appendIfNotNull(tradingBox, makeItem('trading', t)));
+  if (eraBox)     ERA_OPTIONS.forEach(e => appendIfNotNull(eraBox, makeItem('era', e)));
 }
 
 function onFilterChange(e) {
@@ -247,7 +252,7 @@ function getFiltered() {
     if (search) {
       const desc = (v.desc[state.lang] || '').toLowerCase();
       const milestone = (v.milestone[state.lang] || '').toLowerCase();
-      const hay = [v.name, v.physics, v.hq, desc, milestone, ...v.stack].join(' ').toLowerCase();
+      const hay = [v.name, v.physics, v.hq, v.country || '', desc, milestone, ...v.stack].join(' ').toLowerCase();
       if (!hay.includes(search)) return false;
     }
     return true;
@@ -255,7 +260,11 @@ function getFiltered() {
     if (state.sort === 'founded') return a.founded - b.founded;
     if (state.sort === 'physics') return a.physics.localeCompare(b.physics);
     if (state.sort === 'stack')   return (a.stack[0] || '').localeCompare(b.stack[0] || '');
-    if (state.sort === 'region')  return a.region.localeCompare(b.region);
+    if (state.sort === 'region') {
+      // Group by continent first, then alphabetize by country within each.
+      const r = a.region.localeCompare(b.region);
+      return r !== 0 ? r : (a.country || '').localeCompare(b.country || '');
+    }
     if (state.sort === 'ticker' || state.sort === 'stock') {
       // Sort by % change descending. Vendors without ticker or with errors sink to the bottom.
       const score = (v) => {
@@ -322,7 +331,7 @@ function renderTable(list) {
       <td class="name">${v.name}</td>
       <td><span class="chip chip-physics" data-physics="${v.physics}" title="${t('click_physics_hint')}">${t('physics_' + v.physics)}</span></td>
       <td>${v.stack.map(chipForStack).join(' ')}</td>
-      <td>${t('region_' + v.region)}</td>
+      <td>${v.country || t('region_' + v.region)}</td>
       <td>${stockChip(v.ticker)}</td>
       <td>${v.founded}</td>
       <td>${v.milestone[state.lang] || v.milestone.en}</td>

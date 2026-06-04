@@ -6,7 +6,8 @@
       "name": "IBM Quantum",
       "physics": "superconducting",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 1980,
       "hq": "Yorktown Heights, NY, USA",
       "ticker": "IBM",
@@ -29,7 +30,8 @@
       "name": "Google Quantum AI",
       "physics": "superconducting",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2012,
       "hq": "Santa Barbara, CA, USA",
       "ticker": "GOOGL",
@@ -52,7 +54,8 @@
       "name": "Rigetti Computing",
       "physics": "superconducting",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2013,
       "hq": "Berkeley, CA, USA",
       "ticker": "RGTI",
@@ -75,6 +78,7 @@
       "physics": "superconducting",
       "stack": ["full"],
       "region": "europe",
+      "country": "Finland",
       "founded": 2018,
       "hq": "Espoo, Finland",
       "milestone": {
@@ -96,6 +100,7 @@
       "physics": "superconducting",
       "stack": ["full"],
       "region": "europe",
+      "country": "UK",
       "founded": 2017,
       "hq": "Reading, UK",
       "milestone": {
@@ -116,7 +121,8 @@
       "name": "IonQ",
       "physics": "iontrap",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2015,
       "hq": "College Park, MD, USA",
       "ticker": "IONQ",
@@ -138,7 +144,8 @@
       "name": "Quantinuum",
       "physics": "iontrap",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2021,
       "hq": "Broomfield, CO, USA / Cambridge, UK",
       "milestone": {
@@ -160,6 +167,7 @@
       "physics": "iontrap",
       "stack": ["qubit"],
       "region": "europe",
+      "country": "UK",
       "founded": 2019,
       "hq": "Oxford, UK",
       "milestone": {
@@ -181,6 +189,7 @@
       "physics": "iontrap",
       "stack": ["full"],
       "region": "europe",
+      "country": "Austria",
       "founded": 2018,
       "hq": "Innsbruck, Austria",
       "milestone": {
@@ -201,7 +210,8 @@
       "name": "PsiQuantum",
       "physics": "photonic",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2016,
       "hq": "Palo Alto, CA, USA",
       "milestone": {
@@ -222,7 +232,8 @@
       "name": "Xanadu",
       "physics": "photonic",
       "stack": ["full"],
-      "region": "canada",
+      "region": "americas",
+      "country": "Canada",
       "founded": 2016,
       "hq": "Toronto, Canada",
       "milestone": {
@@ -244,6 +255,7 @@
       "physics": "photonic",
       "stack": ["full"],
       "region": "europe",
+      "country": "UK",
       "founded": 2019,
       "hq": "London, UK",
       "milestone": {
@@ -264,7 +276,8 @@
       "name": "QuEra Computing",
       "physics": "neutralatom",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2018,
       "hq": "Boston, MA, USA",
       "milestone": {
@@ -285,7 +298,8 @@
       "name": "Atom Computing",
       "physics": "neutralatom",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2018,
       "hq": "Berkeley, CA, USA",
       "milestone": {
@@ -307,6 +321,7 @@
       "physics": "neutralatom",
       "stack": ["full"],
       "region": "europe",
+      "country": "France",
       "founded": 2019,
       "hq": "Massy, France",
       "milestone": {
@@ -327,7 +342,8 @@
       "name": "Infleqtion",
       "physics": "neutralatom",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2007,
       "hq": "Boulder, CO, USA",
       "milestone": {
@@ -348,7 +364,8 @@
       "name": "Intel Quantum",
       "physics": "siliconspin",
       "stack": ["qubit"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2015,
       "hq": "Santa Clara, CA, USA",
       "ticker": "INTC",
@@ -371,6 +388,7 @@
       "physics": "siliconspin",
       "stack": ["qubit"],
       "region": "oceania",
+      "country": "Australia",
       "founded": 2022,
       "hq": "Sydney, Australia",
       "milestone": {
@@ -392,6 +410,7 @@
       "physics": "siliconspin",
       "stack": ["qubit"],
       "region": "europe",
+      "country": "UK",
       "founded": 2017,
       "hq": "London, UK",
       "milestone": {
@@ -412,7 +431,8 @@
       "name": "Microsoft Quantum",
       "physics": "topological",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2005,
       "hq": "Redmond, WA, USA",
       "ticker": "MSFT",
@@ -435,6 +455,7 @@
       "physics": "agnostic",
       "stack": ["control"],
       "region": "asia",
+      "country": "Israel",
       "founded": 2018,
       "hq": "Tel Aviv, Israel",
       "milestone": {
@@ -456,6 +477,7 @@
       "physics": "agnostic",
       "stack": ["control"],
       "region": "europe",
+      "country": "Switzerland",
       "founded": 2008,
       "hq": "Zurich, Switzerland",
       "milestone": {
@@ -477,6 +499,7 @@
       "physics": "agnostic",
       "stack": ["control"],
       "region": "europe",
+      "country": "Netherlands",
       "founded": 2020,
       "hq": "Delft, Netherlands",
       "milestone": {
@@ -498,6 +521,7 @@
       "physics": "agnostic",
       "stack": ["control"],
       "region": "europe",
+      "country": "Finland",
       "founded": 2007,
       "hq": "Helsinki, Finland",
       "milestone": {
@@ -519,6 +543,7 @@
       "physics": "agnostic",
       "stack": ["software"],
       "region": "asia",
+      "country": "Israel",
       "founded": 2020,
       "hq": "Tel Aviv, Israel",
       "milestone": {
@@ -539,7 +564,8 @@
       "name": "QC Ware",
       "physics": "agnostic",
       "stack": ["software"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2014,
       "hq": "Palo Alto, CA, USA",
       "milestone": {
@@ -561,6 +587,7 @@
       "physics": "agnostic",
       "stack": ["software", "control"],
       "region": "oceania",
+      "country": "Australia",
       "founded": 2017,
       "hq": "Sydney, Australia",
       "milestone": {
@@ -581,7 +608,8 @@
       "name": "AWS Braket",
       "physics": "agnostic",
       "stack": ["cloud"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2019,
       "hq": "Seattle, WA, USA",
       "milestone": {
@@ -602,7 +630,8 @@
       "name": "D-Wave Systems",
       "physics": "superconducting",
       "stack": ["full"],
-      "region": "canada",
+      "region": "americas",
+      "country": "Canada",
       "founded": 1999,
       "hq": "Burnaby, BC, Canada",
       "ticker": "QBTS",
@@ -615,14 +644,17 @@
         "zh": "量子退火先驅（非閘模型）。NYSE: QBTS。Leap 雲端服務針對最佳化問題。目前也在開發閘模型超導系統。"
       },
       "newsQuery": "D-Wave quantum",
-      "links": { "site": "https://www.dwavesys.com" }
+      "links": {
+        "site": "https://www.dwavesys.com"
+      }
     },
     {
       "id": "qci",
       "name": "Quantum Computing Inc",
       "physics": "photonic",
       "stack": ["full"],
-      "region": "usa",
+      "region": "americas",
+      "country": "USA",
       "founded": 2018,
       "hq": "Hoboken, NJ, USA",
       "ticker": "QUBT",
@@ -635,7 +667,9 @@
         "zh": "室溫光子量子運算，針對最佳化與 AI。NASDAQ: QUBT。"
       },
       "newsQuery": "Quantum Computing Inc QUBT",
-      "links": { "site": "https://quantumcomputinginc.com" }
+      "links": {
+        "site": "https://quantumcomputinginc.com"
+      }
     },
     {
       "id": "origin-quantum",
@@ -643,6 +677,7 @@
       "physics": "superconducting",
       "stack": ["full"],
       "region": "asia",
+      "country": "China",
       "founded": 2017,
       "hq": "Hefei, China",
       "milestone": {
