@@ -50,9 +50,12 @@ the chat session on 2026-06-04 morning. Five commits on `round2-improvements`:
 - **Filter presets / quick chips** — row of chips above the search box: "All public stocks" / "Full-stack only" / "Neutral atom" / "Pre-2010 incumbents" etc. One click applies the preset combo. Editable presets stored in localStorage.
 - **Compare mode** — checkbox on each card (small ☑ icon top-right next to stack chips). Pick 2–4 vendors → "Compare" button appears bottom-right → opens a side drawer with parallel columns of all the vendor fields (physics, stack, milestone, stock, etc.). Esc / click outside to close.
 
+### Bugs / polish to fix when convenient
+
+- **Stock column overflow in table view** — the Stock column is `width: 6%` (~37px) but the stock chip text like `GOOGL $310.15 -1.23%` is ~110px and `white-space: nowrap`, so the chip visibly bleeds into the Founded column on rows with high-priced or wide-ticker vendors. Fix: rebalance column widths to give Stock ~12%, taking from Milestone (20→16%) or Stack (17→14%). Will need a re-screenshot pass at narrow viewport widths to confirm nothing else regresses.
+
 ### Other ideas parked here for future rounds
 
-- Sort by stock change % (when in card view too, not just table)
 - "Recently active" filter — vendors with news in last 7 days (uses RSS data)
 - Per-physics article link out to Wikipedia/arXiv survey
 - Light-mode redesign pass (current dark mode is primary, light is functional but unloved)

@@ -317,9 +317,13 @@ function renderCards(list) {
 
 function renderTable(list) {
   const tbody = document.getElementById('tableBody');
+  // Company name links to the vendor's website if available; falls back to plain text.
+  const nameCell = (v) => v.links && v.links.site
+    ? `<a class="table-name-link" href="${v.links.site}" target="_blank" rel="noopener" title="${v.links.site}">${v.name} <span class="ext-icon">↗</span></a>`
+    : v.name;
   tbody.innerHTML = list.map(v => `
     <tr data-id="${v.id}">
-      <td class="name">${v.name}</td>
+      <td class="name">${nameCell(v)}</td>
       <td><span class="chip chip-physics" data-physics="${v.physics}" title="${t('click_physics_hint')}">${t('physics_' + v.physics)}</span></td>
       <td>${v.stack.map(chipForStack).join(' ')}</td>
       <td>${t('region_' + v.region)}</td>

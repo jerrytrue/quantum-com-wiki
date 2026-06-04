@@ -531,6 +531,23 @@ body {
   background: rgba(124,92,255,0.06);
 }
 .vendor-table td.name { font-weight: 600; }
+.vendor-table .table-name-link {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--border);
+  transition: color 0.15s, border-color 0.15s;
+}
+.vendor-table .table-name-link:hover {
+  color: var(--accent-2);
+  border-bottom-color: var(--accent-2);
+}
+.vendor-table .table-name-link .ext-icon {
+  font-size: 9px;
+  color: var(--text-dim);
+  margin-left: 2px;
+  vertical-align: super;
+}
+.vendor-table .table-name-link:hover .ext-icon { color: var(--accent-2); }
 
 /* ---------- Footer ---------- */
 .footer {
