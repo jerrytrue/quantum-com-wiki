@@ -15,13 +15,17 @@ Tracks planned work across multiple rounds. Each round is one scheduled-task bat
 - **RSS strip carousel** (PR #2): 3 items per page, 5s auto-rotate, hover-pause, ◀ ▶ nav. Strip moved to `left: 280px` so it no longer overlaps the filter column. Sidebar gets full viewport height.
 - **Trading status + Founded era filters** (PR #3): Public/Private toggle (8/22), legacy/modern/recent buckets (6/10/14). Derived from existing fields, no schema change.
 
-## Round 2 — Physics deep-dive ⏰ scheduled 2026-06-03 19:00 +08:00
+## Round 2 — Physics deep-dive ✅ (pushed 2026-06-04, manual run)
+
+Scheduled task fired 2026-06-03 19:00 but the host app closed shortly after,
+so the agent only logged ~1 minute before dying. Re-executed manually inside
+the chat session on 2026-06-04 morning. Five commits on `round2-improvements`:
 
 - `physics-details.json` — 7 physics technologies × {principle, encoding, pros, cons, players, operating temp, T₂} in EN + ZH
 - `svg/*.svg` — 7 schematic diagrams (one per physics)
 - Click physics chip → opens modal with text + SVG + 3-row layout
-- Interactive Bloch sphere in modal (three.js): X / Y / Z / H / S / T gates + Reset + live |ψ⟩ display
-- Deadline: 2026-06-04 08:00 +08:00 auto-stop
+- Interactive Bloch sphere in modal (three.js r128): X / Y / Z / H / S / T gates + Reset + live |ψ⟩ + ⟨σ⟩ display
+- One follow-up fix for a dead-code syntax error in bloch.js
 
 ## Round 3 — Backlog (not scheduled yet)
 

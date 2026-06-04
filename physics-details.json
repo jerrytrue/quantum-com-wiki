@@ -1,0 +1,156 @@
+{
+  "superconducting": {
+    "title": { "en": "Superconducting Qubits", "zh": "超導量子位元" },
+    "principle": {
+      "en": "A nonlinear LC resonator built from a Josephson junction (two superconductors separated by a thin insulator). The junction's anharmonicity makes the lowest two energy levels addressable as a qubit while higher levels stay off-resonance. Microwave pulses drive single-qubit gates; tunable couplers or fixed capacitive/inductive bonds entangle neighbors.",
+      "zh": "由 Josephson 接面（兩塊超導體夾一層極薄絕緣層）組成的非線性 LC 共振器。接面的非諧性讓最低兩個能階可以被當作 qubit 操作，而更高能階因為偏離共振頻率不會被誤觸發。微波脈衝驅動單量子位元閘；可調式 coupler 或固定的電容/電感耦合用來糾纏鄰居。"
+    },
+    "encoding": {
+      "en": "|0⟩ = ground state, |1⟩ = first excited state of the transmon-like oscillator.",
+      "zh": "|0⟩ = transmon-like 振盪器的基態，|1⟩ = 第一激發態。"
+    },
+    "pros": {
+      "en": ["Fast gates (~10–50 ns)", "Lithographically fabricated — leverages semiconductor manufacturing", "Most mature commercial ecosystem"],
+      "zh": ["閘速快（~10–50 ns）", "微影製程製造，可借用半導體製造設施", "目前最成熟的商用生態系"]
+    },
+    "cons": {
+      "en": ["Requires ~15 mK dilution refrigerator", "Short coherence (T₂ ~100–500 μs)", "Crosstalk and frequency collisions as count grows"],
+      "zh": ["需要 ~15 mK 稀釋冷凍機", "相干時間短（T₂ ~100–500 μs）", "qubit 數量增多時 crosstalk 與頻率衝突難避免"]
+    },
+    "majorPlayers": ["IBM Quantum", "Google Quantum AI", "Rigetti Computing", "IQM Quantum Computers", "Oxford Quantum Circuits", "Origin Quantum (本源量子)", "D-Wave Systems"],
+    "operatingTemp": "~15 mK",
+    "coherenceTime": "T₂ ~100–500 μs"
+  },
+  "iontrap": {
+    "title": { "en": "Trapped-Ion Qubits", "zh": "離子阱量子位元" },
+    "principle": {
+      "en": "Individual atomic ions (Yb⁺, Ca⁺, Ba⁺) are suspended in ultra-high vacuum by RF and DC electric fields. Laser beams cool the ions to near absolute zero and drive transitions between two hyperfine ground states. Entanglement uses the shared motion of the ion chain (Mølmer–Sørensen interaction) — naturally giving all-to-all connectivity within a trap.",
+      "zh": "單一原子離子（Yb⁺、Ca⁺、Ba⁺）在極高真空中靠 RF 和直流電場懸浮。雷射把離子冷卻到接近絕對零度，並驅動兩個超精細基態之間的躍遷。糾纏透過離子鏈共有的振動模式達成（Mølmer–Sørensen 交互作用）— 同一個阱裡的離子自然具有全對全連通性。"
+    },
+    "encoding": {
+      "en": "|0⟩, |1⟩ = two hyperfine ground states of the valence electron (e.g. ²S₁/₂ |F=0⟩ and |F=1⟩).",
+      "zh": "|0⟩、|1⟩ = 價電子的兩個超精細基態（例如 ²S₁/₂ |F=0⟩ 與 |F=1⟩）。"
+    },
+    "pros": {
+      "en": ["Highest published gate fidelities (>99.9% 2Q, >99.99% 1Q)", "Long coherence times (seconds)", "All-to-all connectivity within a single trap"],
+      "zh": ["業界最高的閘保真度（雙量子位元 >99.9%、單量子位元 >99.99%）", "相干時間長（秒級）", "同一阱內全對全連通性"]
+    },
+    "cons": {
+      "en": ["Slow gates (~10–100 μs)", "Hard to scale beyond ~100 ions per trap — needs ion shuttling or photonic interconnects", "Laser systems are complex and bulky"],
+      "zh": ["閘速慢（~10–100 μs）", "單阱難超過 ~100 顆離子，需要離子搬移或光子互連", "雷射系統複雜笨重"]
+    },
+    "majorPlayers": ["IonQ", "Quantinuum", "Oxford Ionics", "Alpine Quantum Technologies (AQT)"],
+    "operatingTemp": "Room temp (UHV chamber)",
+    "coherenceTime": "T₂ ~10–100 s"
+  },
+  "photonic": {
+    "title": { "en": "Photonic Qubits", "zh": "光子量子位元" },
+    "principle": {
+      "en": "Single photons travel through silicon-nitride or silicon waveguides on a photonic chip, with the qubit encoded in an orthogonal mode (polarization, path, or time-bin). Gates use linear optics — beam splitters and phase shifters — together with single-photon detectors and feed-forward. Fault tolerance relies on measurement-based computation with photonic cluster states.",
+      "zh": "單光子在矽氮或矽光子晶片的波導中傳播，qubit 編碼在正交模式上（偏振、路徑或時間）。閘運算用線性光學元件（分光器與相位調變器）加上單光子偵測器與 feed-forward 控制。容錯架構靠測量為基礎的計算（measurement-based computation）與光子 cluster states。"
+    },
+    "encoding": {
+      "en": "|0⟩, |1⟩ = two orthogonal photonic modes (e.g. horizontal vs. vertical polarization, or two paths in a Mach–Zehnder).",
+      "zh": "|0⟩、|1⟩ = 兩個正交光子模式（例如水平/垂直偏振，或 Mach–Zehnder 的兩條路徑）。"
+    },
+    "pros": {
+      "en": ["Room-temperature operation (detectors still need ~4 K)", "Naturally networkable — photons travel through fiber", "No decoherence in flight"],
+      "zh": ["室溫運作（偵測器仍需 ~4 K）", "天然可組網（光子直接走光纖）", "傳播過程中沒有 decoherence"]
+    },
+    "cons": {
+      "en": ["Probabilistic gates — many physical photons per logical operation", "Photon loss is the dominant error", "Large physical footprint per logical qubit (millions of components for fault tolerance)"],
+      "zh": ["閘運算是機率性的，一個邏輯閘需要大量物理光子", "光子損失是主要錯誤源", "每個邏輯 qubit 需要極大物理面積（容錯架構要數百萬元件）"]
+    },
+    "majorPlayers": ["PsiQuantum", "Xanadu", "ORCA Computing", "Quantum Computing Inc"],
+    "operatingTemp": "Room temp (detectors ~4 K)",
+    "coherenceTime": "Loss-limited (no T₂ — error from photon loss instead)"
+  },
+  "neutralatom": {
+    "title": { "en": "Neutral-Atom Qubits", "zh": "中性原子量子位元" },
+    "principle": {
+      "en": "Arrays of neutral atoms (Rb, Sr, Cs) are trapped in optical tweezer arrays using focused laser beams. Single-atom gates use coherent Raman or microwave drives. Two-qubit gates excite atoms briefly to a Rydberg state (high principal quantum number), where strong dipole–dipole interaction enables conditional gates between nearby atoms. The trap geometry is reconfigurable shot-to-shot.",
+      "zh": "中性原子陣列（Rb、Sr、Cs）用聚焦雷射光束組成的光鑷陣列困住。單原子閘用相干 Raman 或微波驅動。雙量子位元閘把原子短暫激發到 Rydberg 態（極高主量子數），讓鄰近原子間的強偶極–偶極交互作用驅動條件閘。陷阱幾何可以逐次重新組態。"
+    },
+    "encoding": {
+      "en": "|0⟩, |1⟩ = two hyperfine ground states (alkali) or clock states (alkaline-earth like Sr).",
+      "zh": "|0⟩、|1⟩ = 兩個超精細基態（鹼金屬），或鬧鐘態（鹼土金屬如 Sr）。"
+    },
+    "pros": {
+      "en": ["Thousands of atoms achievable in 2D / 3D arrays", "Reconfigurable connectivity (move the atoms)", "No fabrication required — same array template scales"],
+      "zh": ["可達數千顆原子的 2D / 3D 陣列", "連通性可重組（搬原子就好）", "不需製造，同一個陣列模板就可放大"]
+    },
+    "cons": {
+      "en": ["Slow Rydberg 2Q gates (~hundreds of ns) — but high fidelity", "Atom loss requires periodic rearrangement", "Calibration drift over hours"],
+      "zh": ["Rydberg 雙量子位元閘較慢（~百 ns），但保真度高", "原子流失需要週期性重新排列", "校準會在數小時內漂移"]
+    },
+    "majorPlayers": ["QuEra Computing", "Atom Computing", "Pasqal", "Infleqtion"],
+    "operatingTemp": "Atoms at ~μK in optical traps (room-temp chamber)",
+    "coherenceTime": "T₂ ~1–10 s"
+  },
+  "topological": {
+    "title": { "en": "Topological Qubits", "zh": "拓樸量子位元" },
+    "principle": {
+      "en": "Majorana zero modes — exotic quasiparticles predicted at the ends of semiconductor nanowires coupled to a superconductor in a strong magnetic field. Quantum information is stored non-locally in the joint parity of distant Majoranas, making it inherently protected from local noise. Gates are performed by 'braiding' the Majoranas — physically or measurement-based swapping their positions.",
+      "zh": "Majorana zero modes — 在半導體奈米線耦合超導體並施加強磁場時，預期會在線兩端出現的奇異準粒子。量子資訊非局域地儲存在相距遙遠的兩個 Majorana 的奇偶性中，因此本質上對局部雜訊有保護。閘運算靠『編織』Majorana — 透過物理或測量方式交換它們的位置。"
+    },
+    "encoding": {
+      "en": "|0⟩, |1⟩ = even vs. odd fermion parity of a pair of Majorana zero modes.",
+      "zh": "|0⟩、|1⟩ = 一對 Majorana zero modes 的偶/奇 fermion 奇偶性。"
+    },
+    "pros": {
+      "en": ["Topologically protected — error rate decays exponentially with system size", "Potentially the lowest error rate of any qubit"],
+      "zh": ["拓樸保護 — 錯誤率隨系統尺寸指數下降", "理論上錯誤率可能是所有 qubit 中最低"]
+    },
+    "cons": {
+      "en": ["Still being experimentally demonstrated as of 2025", "Requires ~50 mK + strong magnetic field", "Native gate set incomplete — needs magic-state distillation for universal computation"],
+      "zh": ["截至 2025 仍在實驗驗證階段", "需要 ~50 mK + 強磁場", "原生閘集不完整，需要 magic-state distillation 才能通用計算"]
+    },
+    "majorPlayers": ["Microsoft Quantum"],
+    "operatingTemp": "~50 mK + magnetic field",
+    "coherenceTime": "Topologically protected — long in principle"
+  },
+  "siliconspin": {
+    "title": { "en": "Silicon Spin Qubits", "zh": "矽自旋量子位元" },
+    "principle": {
+      "en": "An electron (or sometimes a nuclear) spin is trapped in a quantum dot patterned into isotopically purified silicon-28. The Zeeman splitting in a magnetic field defines the qubit. Single-qubit gates are driven by electric-dipole spin resonance (EDSR) via a micromagnet, or directly by ESR. Two-qubit gates use the exchange interaction between neighboring dots, tuned by gate electrodes.",
+      "zh": "電子（或核）自旋被困在純化矽 28 上製作的量子點裡。施加磁場後的 Zeeman 能級分裂定義 qubit。單量子位元閘可透過微磁鐵激發的電偶極自旋共振（EDSR）或直接 ESR 驅動。雙量子位元閘用相鄰量子點之間的交換交互作用（exchange），由閘極電壓調控。"
+    },
+    "encoding": {
+      "en": "|0⟩ = spin-down |↓⟩, |1⟩ = spin-up |↑⟩.",
+      "zh": "|0⟩ = 自旋向下 |↓⟩，|1⟩ = 自旋向上 |↑⟩。"
+    },
+    "pros": {
+      "en": ["CMOS-compatible — fabricated in 300 mm semiconductor fabs", "Smallest qubit footprint (~50 nm)", "Long T₂ in purified ²⁸Si (~ms)"],
+      "zh": ["相容 CMOS — 可在 300 mm 半導體廠製造", "qubit 物理面積最小（~50 nm）", "純化 ²⁸Si 的 T₂ 長（~ms）"]
+    },
+    "cons": {
+      "en": ["Slow 2Q gates relative to superconducting (~10–100 ns but lower fidelity)", "Charge noise and gate variability dominate errors", "Fab-induced variability still high"],
+      "zh": ["相對超導的雙量子位元閘較慢（~10–100 ns 但保真度較低）", "電荷雜訊與閘極變異是主要錯誤源", "製程變異仍偏大"]
+    },
+    "majorPlayers": ["Intel Quantum", "Diraq", "Quantum Motion"],
+    "operatingTemp": "~100 mK (dilution refrigerator)",
+    "coherenceTime": "T₂ ~1–10 ms (in purified ²⁸Si)"
+  },
+  "nvcenter": {
+    "title": { "en": "NV-center Qubits", "zh": "鑽石 NV-center 量子位元" },
+    "principle": {
+      "en": "A Nitrogen-Vacancy (NV) defect in diamond — a substitutional N atom next to a missing C — hosts an electron spin with three sublevels (mₛ = 0, ±1). Optical pumping at 532 nm initializes and reads out the spin via spin-dependent fluorescence. Microwave drives Rabi oscillations between sublevels. The NV electron spin can be coupled to nearby ¹³C nuclear spins as additional qubits or quantum memory.",
+      "zh": "鑽石中的氮空位（NV）缺陷 — 一個取代位的 N 原子旁邊有個 C 空缺 — 帶有一個電子自旋，具有三個次能階（mₛ = 0、±1）。532 nm 光泵浦初始化並透過自旋依賴螢光讀出。微波驅動次能階間的 Rabi 振盪。NV 電子自旋可與鄰近 ¹³C 核自旋耦合，作為額外 qubit 或量子記憶體。"
+    },
+    "encoding": {
+      "en": "|0⟩ = mₛ = 0, |1⟩ = mₛ = -1 (or +1) sublevel of the NV electron triplet ground state.",
+      "zh": "|0⟩ = mₛ = 0、|1⟩ = mₛ = -1（或 +1）NV 電子 triplet 基態的次能階。"
+    },
+    "pros": {
+      "en": ["Operates at room temperature", "Optical addressability (single qubit visible under microscope)", "Strong magnetic-field sensitivity — also useful for sensing"],
+      "zh": ["室溫運作", "光學定址（顯微鏡下可看到單一 qubit）", "對磁場高敏感，也適合量測應用"]
+    },
+    "cons": {
+      "en": ["Hard to scale to many qubits — NV positions in diamond are random", "Slow gates compared to superconducting", "Fabrication of high-quality diamond with controlled defects is non-trivial"],
+      "zh": ["難擴展到多 qubit — NV 在鑽石中的位置隨機", "閘速比超導慢", "高品質、缺陷可控的鑽石製造不容易"]
+    },
+    "majorPlayers": ["Quantum Brilliance (commercial)", "Most activity in academic labs (Delft, Stuttgart, Harvard)"],
+    "operatingTemp": "Room temp",
+    "coherenceTime": "T₂ ~1 ms (electron), ~minutes (¹³C nuclei)"
+  }
+}

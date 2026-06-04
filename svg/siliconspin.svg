@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .substrate { fill: #7c5cff; opacity: 0.15; stroke: #7c5cff; stroke-width: 1; }
+    .oxide     { fill: #29d8c5; opacity: 0.2; stroke: #29d8c5; stroke-width: 1; }
+    .gate      { fill: #ffb84d; opacity: 0.7; stroke: #ffb84d; stroke-width: 1; }
+    .electron  { fill: #ff5cb0; }
+    .arrow     { stroke: #ff5cb0; stroke-width: 2.5; fill: #ff5cb0; }
+    .lbl       { fill: #e6ecff; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
+    .dim       { fill: #8b97c2; font-size: 10px; }
+  </style>
+
+  <!-- Silicon substrate (bottom thick layer) -->
+  <rect x="40" y="190" width="320" height="60" class="substrate"/>
+  <text x="48" y="245" class="dim">²⁸Si substrate (isotopically purified)</text>
+
+  <!-- Oxide layer -->
+  <rect x="40" y="170" width="320" height="20" class="oxide"/>
+  <text x="320" y="184" class="dim">SiO₂</text>
+
+  <!-- Gate electrodes on top (3 of them) -->
+  <rect x="80"  y="130" width="60" height="40" class="gate" rx="3"/>
+  <rect x="170" y="130" width="60" height="40" class="gate" rx="3"/>
+  <rect x="260" y="130" width="60" height="40" class="gate" rx="3"/>
+  <text x="100" y="120" class="dim">gate L</text>
+  <text x="190" y="120" class="dim">gate M</text>
+  <text x="280" y="120" class="dim">gate R</text>
+
+  <!-- Two quantum dots (electrons under gates L and R) -->
+  <ellipse cx="110" cy="200" rx="22" ry="10" fill="#ff5cb0" fill-opacity="0.15" stroke="#ff5cb0" stroke-width="1.5"/>
+  <ellipse cx="290" cy="200" rx="22" ry="10" fill="#ff5cb0" fill-opacity="0.15" stroke="#ff5cb0" stroke-width="1.5"/>
+
+  <!-- Electron with spin arrow in left dot (up) -->
+  <circle cx="110" cy="200" r="5" class="electron"/>
+  <path d="M 110 195 L 110 178" class="arrow"/>
+  <path d="M 110 178 L 106 184 M 110 178 L 114 184" class="arrow"/>
+  <text x="125" y="180" class="lbl">|↑⟩ = |1⟩</text>
+
+  <!-- Electron with spin arrow in right dot (down) -->
+  <circle cx="290" cy="200" r="5" class="electron"/>
+  <path d="M 290 205 L 290 222" class="arrow"/>
+  <path d="M 290 222 L 286 216 M 290 222 L 294 216" class="arrow"/>
+  <text x="305" y="220" class="lbl">|↓⟩ = |0⟩</text>
+
+  <!-- Exchange coupling between dots (dashed line) -->
+  <line x1="135" y1="200" x2="265" y2="200" stroke="#ffb84d" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="170" y="215" class="dim">exchange J(t)</text>
+
+  <!-- Magnetic field -->
+  <path d="M 30 60 L 60 60" stroke="#5ab1ff" stroke-width="2"/>
+  <path d="M 60 60 L 54 56 M 60 60 L 54 64" stroke="#5ab1ff" stroke-width="2"/>
+  <text x="30" y="50" class="dim">B₀</text>
+
+  <!-- Title -->
+  <text x="60" y="32" class="lbl">Silicon quantum dot (cross-section, ~50 nm wide)</text>
+  <text x="60" y="285" class="dim">~100 mK • CMOS-compatible fabrication</text>
+</svg>

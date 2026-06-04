@@ -119,6 +119,62 @@
     &nbsp;·&nbsp; <span data-i18n="sources">Sources</span>
   </footer>
 
-  <script src="app.js?v=4"></script>
+  <!-- ============= PHYSICS DETAIL MODAL ============= -->
+  <div id="physicsModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <div class="modal-body">
+        <header class="modal-header">
+          <h2 id="modalTitle"></h2>
+        </header>
+        <div class="modal-content">
+          <div class="modal-svg" id="modalSvg"></div>
+          <div class="modal-text">
+            <h3 data-i18n="modal_principle">Principle</h3>
+            <p id="modalPrinciple"></p>
+            <h3 data-i18n="modal_encoding">Encoding</h3>
+            <p id="modalEncoding"></p>
+            <div class="modal-cols">
+              <div><h3 data-i18n="modal_pros">Pros</h3><ul id="modalPros"></ul></div>
+              <div><h3 data-i18n="modal_cons">Cons</h3><ul id="modalCons"></ul></div>
+            </div>
+            <div class="modal-stats">
+              <div><span data-i18n="modal_temp">Operating temperature</span>: <b id="modalTemp"></b></div>
+              <div><span data-i18n="modal_coherence">Coherence (T₂)</span>: <b id="modalCoherence"></b></div>
+            </div>
+            <h3 data-i18n="modal_players">Major players</h3>
+            <div id="modalPlayers" class="modal-players"></div>
+          </div>
+        </div>
+        <div class="modal-bloch-section">
+          <h3 data-i18n="modal_bloch">Interactive Bloch sphere</h3>
+          <p class="bloch-hint" data-i18n="modal_bloch_hint">Apply gates to see how the qubit state rotates. Same math for all physics.</p>
+          <div id="blochContainer"></div>
+          <div class="bloch-controls">
+            <div class="bloch-gates">
+              <button data-gate="X" title="X (NOT) gate">X</button>
+              <button data-gate="Y" title="Y gate">Y</button>
+              <button data-gate="Z" title="Z gate">Z</button>
+              <button data-gate="H" title="Hadamard">H</button>
+              <button data-gate="S" title="S (phase) gate">S</button>
+              <button data-gate="T" title="T gate">T</button>
+            </div>
+            <button class="bloch-reset" data-i18n="modal_bloch_reset">Reset to |0⟩</button>
+          </div>
+          <div class="bloch-state">
+            <span>|ψ⟩ = </span>
+            <span id="blochAlpha">1.000</span><span>|0⟩ + </span>
+            <span id="blochBeta">0.000</span><span>|1⟩</span>
+            <span class="bloch-vec" id="blochVec"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="bloch.js?v=1"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

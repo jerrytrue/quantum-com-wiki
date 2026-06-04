@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .wire    { stroke: #7c5cff; stroke-width: 6; fill: none; }
+    .scwire  { stroke: #29d8c5; stroke-width: 4; fill: none; opacity: 0.7; }
+    .maj     { fill: #ffb84d; stroke: #ffb84d; }
+    .braid   { stroke: #ff5cb0; stroke-width: 2; fill: none; }
+    .lbl     { fill: #e6ecff; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
+    .dim     { fill: #8b97c2; font-size: 10px; }
+    .greek   { fill: #ffb84d; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 14px; font-weight: 600; }
+  </style>
+
+  <!-- Semiconductor nanowire (purple bar) -->
+  <rect x="60" y="100" width="280" height="12" rx="6" fill="#7c5cff" opacity="0.7"/>
+  <text x="60" y="92" class="dim">InAs / InSb semiconductor nanowire</text>
+
+  <!-- Superconductor on top (cyan) -->
+  <rect x="80" y="80" width="240" height="16" rx="4" fill="#29d8c5" opacity="0.5"/>
+  <text x="160" y="74" class="dim">superconductor (Al)</text>
+
+  <!-- Magnetic field hint -->
+  <text x="280" y="60" class="dim">B field →</text>
+  <path d="M 320 56 L 360 56" stroke="#5ab1ff" stroke-width="1.5"/>
+  <path d="M 360 56 L 354 52 M 360 56 L 354 60" stroke="#5ab1ff" stroke-width="1.5"/>
+
+  <!-- Majorana zero modes (orange dots at both ends) -->
+  <circle cx="68" cy="106" r="10" class="maj"/>
+  <circle cx="68" cy="106" r="20" fill="#ffb84d" opacity="0.2"/>
+  <text x="50" y="138" class="greek">γ₁</text>
+
+  <circle cx="332" cy="106" r="10" class="maj"/>
+  <circle cx="332" cy="106" r="20" fill="#ffb84d" opacity="0.2"/>
+  <text x="324" y="138" class="greek">γ₂</text>
+
+  <!-- Braiding hint at bottom: two crossing paths -->
+  <g transform="translate(80, 200)">
+    <text x="20" y="-12" class="lbl">braid γ₁ around γ₂</text>
+    <path d="M 0 30 Q 60 -20 120 30" class="braid"/>
+    <path d="M 120 30 Q 60 80 0 30" class="braid"/>
+    <circle cx="0" cy="30" r="6" class="maj"/>
+    <circle cx="120" cy="30" r="6" class="maj"/>
+    <text x="-12" y="50" class="greek">γ₁</text>
+    <text x="128" y="50" class="greek">γ₂</text>
+  </g>
+
+  <!-- Caption -->
+  <text x="40" y="285" class="dim">|0⟩ / |1⟩ = even / odd fermion parity of (γ₁, γ₂) — topologically protected</text>
+</svg>

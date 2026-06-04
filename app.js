@@ -5,6 +5,7 @@
 const state = {
   vendors: [],
   i18n: {},
+  physicsDetails: {},
   lang: localStorage.getItem('qvt-lang') || 'en',
   theme: localStorage.getItem('qvt-theme') || 'dark',
   view: localStorage.getItem('qvt-view') || 'card',
@@ -13,6 +14,8 @@ const state = {
   sort: 'name',
   lastUpdated: '',
   stockPrices: {}, // ticker -> {price, pct, error}
+  modalPhysicsKey: null,  // currently-open physics modal key
+  bloch: null,            // active BlochSphere instance, or null
 };
 
 const PHYSICS_OPTIONS = ['superconducting','iontrap','photonic','neutralatom','topological','siliconspin','nvcenter','agnostic'];
@@ -40,13 +43,15 @@ async function boot() {
     // Cache-bust by day so daily updates to vendors.json are picked up immediately,
     // but cache within the same day so repeat visits are fast.
     const day = new Date().toISOString().slice(0, 10);
-    const [v, i] = await Promise.all([
+    const [v, i, p] = await Promise.all([
       fetch(`vendors.json?d=${day}`).then(r => r.json()),
       fetch(`i18n.json?d=${day}`).then(r => r.json()),
+      fetch(`physics-details.json?d=${day}`).then(r => r.json()).catch(() => ({})),
     ]);
     state.vendors = v.vendors;
     state.lastUpdated = v.lastUpdated;
     state.i18n = i;
+    state.physicsDetails = p;
   } catch (e) {
     console.error('Failed to load data:', e);
     document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#fff">Failed to load data. If you opened the file directly, please serve via a local web server (see README).</div>';
@@ -140,6 +145,94 @@ function bindEvents() {
       render();
     });
   });
+
+  // Delegated click for physics chip → open detail modal
+  document.body.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip-physics');
+    if (chip && chip.dataset.physics) {
+      e.stopPropagation();
+      openPhysicsModal(chip.dataset.physics);
+    }
+  });
+
+  // Modal close: backdrop, close button, Esc
+  const modal = document.getElementById('physicsModal');
+  if (modal) {
+    modal.querySelector('.modal-backdrop').addEventListener('click', closePhysicsModal);
+    modal.querySelector('.modal-close').addEventListener('click', closePhysicsModal);
+
+    // Wire gate buttons
+    modal.querySelectorAll('.bloch-gates button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (state.bloch) state.bloch.gate(btn.dataset.gate);
+      });
+    });
+    modal.querySelector('.bloch-reset').addEventListener('click', () => {
+      if (state.bloch) state.bloch.reset();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && state.modalPhysicsKey) closePhysicsModal();
+  });
+}
+
+/* ---------- Physics detail modal ---------- */
+async function openPhysicsModal(key) {
+  const detail = state.physicsDetails[key];
+  if (!detail) return;  // agnostic or missing — skip silently
+  state.modalPhysicsKey = key;
+  fillPhysicsModal(key);
+
+  // Fetch and inline the SVG
+  const svgBox = document.getElementById('modalSvg');
+  svgBox.innerHTML = '<div style="color:var(--text-dim);font-size:12px">Loading diagram…</div>';
+  try {
+    const r = await fetch(`svg/${key}.svg`);
+    svgBox.innerHTML = r.ok ? await r.text() : `<div style="color:var(--text-dim);font-size:12px">No diagram available</div>`;
+  } catch {
+    svgBox.innerHTML = `<div style="color:var(--text-dim);font-size:12px">Diagram failed to load</div>`;
+  }
+
+  document.getElementById('physicsModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  // Instantiate Bloch sphere
+  if (window.BlochSphere && !state.bloch) {
+    state.bloch = new BlochSphere(document.getElementById('blochContainer'));
+  } else if (state.bloch) {
+    state.bloch.reset();
+  }
+}
+
+function fillPhysicsModal(key) {
+  const d = state.physicsDetails[key];
+  if (!d) return;
+  const lang = state.lang;
+  const get = (obj) => (obj && (obj[lang] || obj.en)) || '';
+
+  document.getElementById('modalTitle').textContent = get(d.title);
+  document.getElementById('modalPrinciple').textContent = get(d.principle);
+  document.getElementById('modalEncoding').textContent = get(d.encoding);
+  document.getElementById('modalTemp').textContent = d.operatingTemp;
+  document.getElementById('modalCoherence').textContent = d.coherenceTime;
+
+  const prosEl = document.getElementById('modalPros');
+  const consEl = document.getElementById('modalCons');
+  prosEl.innerHTML = (d.pros[lang] || d.pros.en || []).map(s => `<li>${s}</li>`).join('');
+  consEl.innerHTML = (d.cons[lang] || d.cons.en || []).map(s => `<li>${s}</li>`).join('');
+
+  const playersEl = document.getElementById('modalPlayers');
+  playersEl.innerHTML = (d.majorPlayers || []).map(p => `<span class="player-chip">${p}</span>`).join('');
+}
+
+function closePhysicsModal() {
+  document.getElementById('physicsModal').classList.add('hidden');
+  document.body.style.overflow = '';
+  state.modalPhysicsKey = null;
+  if (state.bloch) {
+    state.bloch.destroy();
+    state.bloch = null;
+  }
 }
 
 /* ---------- Filter & sort ---------- */
@@ -195,7 +288,7 @@ function renderCards(list) {
         <div>${v.stack.map(chipForStack).join('')}${stockChip(v.ticker)}</div>
       </div>
       <div class="card-meta-row">
-        <span class="chip chip-physics">${t('physics_' + v.physics)}</span>
+        <span class="chip chip-physics" data-physics="${v.physics}" title="${t('click_physics_hint')}">${t('physics_' + v.physics)}</span>
         <span><b>${t('founded')}:</b> ${v.founded}</span>
         <span><b>${t('hq')}:</b> ${v.hq}</span>
       </div>
@@ -215,7 +308,7 @@ function renderTable(list) {
   tbody.innerHTML = list.map(v => `
     <tr data-id="${v.id}">
       <td class="name">${v.name}</td>
-      <td>${t('physics_' + v.physics)}</td>
+      <td><span class="chip chip-physics" data-physics="${v.physics}" title="${t('click_physics_hint')}">${t('physics_' + v.physics)}</span></td>
       <td>${v.stack.map(chipForStack).join(' ')}</td>
       <td>${t('region_' + v.region)}</td>
       <td>${stockChip(v.ticker)}</td>
@@ -282,6 +375,8 @@ function applyLanguage() {
   });
   const langLabel = document.getElementById('langLabel');
   if (langLabel) langLabel.textContent = state.lang === 'en' ? '中文' : 'EN';
+  // If a physics modal is open, refresh its text content for the new language.
+  if (state.modalPhysicsKey) fillPhysicsModal(state.modalPhysicsKey);
 }
 
 /* ---------- Stock Prices ---------- */
