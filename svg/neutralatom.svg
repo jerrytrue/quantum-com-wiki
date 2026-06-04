@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .atom    { fill: #29d8c5; stroke: #29d8c5; }
+    .rydberg { fill: #ff5cb0; stroke: #ff5cb0; stroke-width: 1.5; }
+    .halo    { fill: none; stroke: #ff5cb0; stroke-width: 1; opacity: 0.4; }
+    .interact { stroke: #ffb84d; stroke-width: 1.5; stroke-dasharray: 4 4; }
+    .tweezer { stroke: #7c5cff; stroke-width: 0.8; opacity: 0.4; }
+    .lbl     { fill: #e6ecff; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
+    .dim     { fill: #8b97c2; font-size: 10px; }
+  </style>
+
+  <!-- Grid: 5x4 atoms -->
+  <g>
+    <!-- row 1 -->
+    <circle cx="100" cy="90"  r="6" class="atom"/>
+    <circle cx="160" cy="90"  r="6" class="atom"/>
+    <circle cx="220" cy="90"  r="6" class="atom"/>
+    <circle cx="280" cy="90"  r="6" class="atom"/>
+    <circle cx="340" cy="90"  r="6" class="atom"/>
+    <!-- row 2: includes the Rydberg-excited atom -->
+    <circle cx="100" cy="150" r="6" class="atom"/>
+    <circle cx="160" cy="150" r="14" class="halo"/>
+    <circle cx="160" cy="150" r="9"  class="rydberg"/>
+    <text x="148" y="135" class="lbl">Rydberg</text>
+    <circle cx="220" cy="150" r="6" class="atom"/>
+    <circle cx="280" cy="150" r="6" class="atom"/>
+    <circle cx="340" cy="150" r="6" class="atom"/>
+    <!-- row 3 -->
+    <circle cx="100" cy="210" r="6" class="atom"/>
+    <circle cx="160" cy="210" r="6" class="atom"/>
+    <circle cx="220" cy="210" r="6" class="atom"/>
+    <circle cx="280" cy="210" r="6" class="atom"/>
+    <circle cx="340" cy="210" r="6" class="atom"/>
+  </g>
+
+  <!-- Tweezer beams hint (vertical) on a few -->
+  <line x1="100" y1="40"  x2="100" y2="260" class="tweezer"/>
+  <line x1="160" y1="40"  x2="160" y2="260" class="tweezer"/>
+  <line x1="220" y1="40"  x2="220" y2="260" class="tweezer"/>
+  <line x1="280" y1="40"  x2="280" y2="260" class="tweezer"/>
+  <line x1="340" y1="40"  x2="340" y2="260" class="tweezer"/>
+
+  <!-- Rydberg interaction with neighbor (right) -->
+  <line x1="172" y1="150" x2="208" y2="150" class="interact"/>
+  <text x="170" y="172" class="dim">Rydberg coupling (CZ gate)</text>
+
+  <!-- Title -->
+  <text x="80" y="32" class="lbl">Optical tweezer array of neutral atoms (Rb)</text>
+  <text x="80" y="285" class="dim">Reconfigurable, ~1000+ atoms in 2D / 3D arrays</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .wg   { stroke: #29d8c5; stroke-width: 3; fill: none; }
+    .bs   { stroke: #ff5cb0; stroke-width: 2; fill: #ff5cb0; fill-opacity: 0.15; }
+    .ph   { fill: #ffb84d; }
+    .lbl  { fill: #e6ecff; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
+    .dim  { fill: #8b97c2; font-size: 10px; }
+  </style>
+
+  <!-- Substrate hint -->
+  <rect x="30" y="60" width="340" height="180" rx="8" fill="#7c5cff" fill-opacity="0.05" stroke="#7c5cff" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="36" y="76" class="dim">silicon photonic chip</text>
+
+  <!-- Top waveguide -->
+  <path d="M 50 110 L 180 110" class="wg"/>
+  <path d="M 220 110 L 350 110" class="wg"/>
+  <!-- Bottom waveguide -->
+  <path d="M 50 200 L 180 200" class="wg"/>
+  <path d="M 220 200 L 350 200" class="wg"/>
+
+  <!-- Beam splitter (square at junction crossing both wgs) -->
+  <rect x="180" y="100" width="40" height="110" class="bs" rx="4"/>
+  <text x="180" y="92" class="lbl">beam splitter</text>
+
+  <!-- Photons traveling: top wg dots -->
+  <circle cx="80" cy="110" r="5" class="ph"/>
+  <circle cx="110" cy="110" r="4" class="ph" opacity="0.7"/>
+  <text x="60" y="98" class="dim">|H⟩ photon</text>
+
+  <!-- Photons after BS: bottom wg dots -->
+  <circle cx="280" cy="200" r="5" class="ph"/>
+  <circle cx="320" cy="200" r="4" class="ph" opacity="0.7"/>
+  <text x="280" y="225" class="dim">|V⟩ photon</text>
+
+  <!-- Detectors at the ends -->
+  <rect x="350" y="100" width="20" height="20" fill="#29d8c5" stroke="#29d8c5" rx="2"/>
+  <rect x="350" y="190" width="20" height="20" fill="#29d8c5" stroke="#29d8c5" rx="2"/>
+  <text x="350" y="135" class="dim">SNSPD</text>
+  <text x="350" y="232" class="dim">SNSPD</text>
+
+  <!-- Caption -->
+  <text x="30" y="270" class="dim">|0⟩, |1⟩ = orthogonal modes (polarization or path) • room-temp chip, ~4 K detectors</text>
+</svg>

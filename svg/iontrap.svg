@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .elec { fill: #29d8c5; opacity: 0.7; stroke: #29d8c5; stroke-width: 1; }
+    .ion  { fill: #ff5cb0; }
+    .laser { stroke: #ffb84d; stroke-width: 1.5; }
+    .fluor { stroke: #5ab1ff; stroke-width: 1; opacity: 0.7; }
+    .lbl  { fill: #e6ecff; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
+    .dim  { fill: #8b97c2; font-size: 10px; }
+  </style>
+
+  <!-- 4 trap electrodes (rounded rectangles, top/bottom/left/right) -->
+  <rect x="180" y="40" width="40" height="60" rx="6" class="elec"/>
+  <rect x="180" y="200" width="40" height="60" rx="6" class="elec"/>
+  <rect x="60" y="120" width="60" height="40" rx="6" class="elec"/>
+  <rect x="280" y="120" width="60" height="40" rx="6" class="elec"/>
+
+  <text x="190" y="32" class="dim">RF+</text>
+  <text x="190" y="275" class="dim">RF+</text>
+  <text x="75" y="115" class="dim">DC</text>
+  <text x="295" y="115" class="dim">DC</text>
+
+  <!-- Ion in center (glowing) -->
+  <circle cx="200" cy="150" r="20" fill="#ff5cb0" opacity="0.15"/>
+  <circle cx="200" cy="150" r="8" class="ion"/>
+  <text x="218" y="155" class="lbl">Yb⁺ ion</text>
+
+  <!-- Incoming laser beam (from top-left) -->
+  <path d="M 30 60 L 192 142" class="laser"/>
+  <path d="M 192 142 L 186 134 M 192 142 L 184 144" class="laser"/>
+  <text x="40" y="50" class="dim">laser (cooling /</text>
+  <text x="40" y="62" class="dim">gate)</text>
+
+  <!-- Fluorescence outgoing (diverging) -->
+  <path d="M 208 158 L 280 220" class="fluor"/>
+  <path d="M 208 158 L 320 200" class="fluor"/>
+  <path d="M 208 158 L 350 180" class="fluor"/>
+  <text x="290" y="230" class="dim">fluorescence</text>
+
+  <!-- Caption -->
+  <text x="20" y="285" class="dim">Single ion suspended in RF/DC trap • UHV chamber • room-temp electrodes</text>
+</svg>

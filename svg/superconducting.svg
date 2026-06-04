@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .wire { stroke: #7c5cff; stroke-width: 2; fill: none; }
+    .comp { stroke: #29d8c5; stroke-width: 2; fill: none; }
+    .jj   { stroke: #ff5cb0; stroke-width: 2.5; fill: none; }
+    .lbl  { fill: #e6ecff; font-family: -apple-system, "Segoe UI", sans-serif; font-size: 12px; }
+    .dim  { fill: #8b97c2; font-size: 10px; }
+    .glow { fill: #29d8c5; opacity: 0.15; }
+  </style>
+
+  <!-- Background hint -->
+  <rect x="40" y="50" width="320" height="180" rx="12" class="glow"/>
+
+  <!-- LC loop top wire -->
+  <path d="M 80 120 L 320 120" class="wire"/>
+  <!-- LC loop bottom wire -->
+  <path d="M 80 200 L 320 200" class="wire"/>
+  <!-- Left vertical: capacitor -->
+  <path d="M 80 120 L 80 145" class="wire"/>
+  <path d="M 60 145 L 100 145" class="comp"/>
+  <path d="M 60 165 L 100 165" class="comp"/>
+  <path d="M 80 165 L 80 200" class="wire"/>
+  <text x="35" y="160" class="dim">C</text>
+
+  <!-- Right vertical: inductor (coil) -->
+  <path d="M 320 120 L 320 140" class="wire"/>
+  <path d="M 320 140 Q 310 145 320 150 Q 330 155 320 160 Q 310 165 320 170 Q 330 175 320 180" class="comp"/>
+  <path d="M 320 180 L 320 200" class="wire"/>
+  <text x="335" y="165" class="dim">L</text>
+
+  <!-- Josephson junction (X) on top wire -->
+  <circle cx="200" cy="120" r="14" fill="#0b1020" stroke="#ff5cb0" stroke-width="2"/>
+  <path d="M 190 110 L 210 130 M 210 110 L 190 130" class="jj"/>
+  <text x="184" y="98" class="lbl">JJ</text>
+  <text x="160" y="98" class="dim">Josephson junction</text>
+
+  <!-- Microwave drive arrow -->
+  <path d="M 200 240 Q 210 230 220 240 Q 230 250 240 240 Q 250 230 260 240" stroke="#ffb84d" stroke-width="1.5" fill="none"/>
+  <path d="M 260 240 L 254 234 M 260 240 L 254 246" stroke="#ffb84d" stroke-width="1.5" fill="none"/>
+  <text x="180" y="255" class="dim">microwave drive (~5 GHz)</text>
+
+  <!-- Energy level labels -->
+  <text x="50" y="40" class="lbl">|0⟩, |1⟩ — lowest two levels</text>
+  <text x="50" y="280" class="dim">Operating temp ≈ 15 mK</text>
+</svg>
