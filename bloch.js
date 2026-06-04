@@ -4,7 +4,6 @@
    ========================================================= */
 
 (function () {
-  function c(re, im) { return { re, im || 0 }; }
   // helpers for complex arithmetic
   const cMul = (a, b) => ({ re: a.re*b.re - a.im*b.im, im: a.re*b.im + a.im*b.re });
   const cAdd = (a, b) => ({ re: a.re + b.re, im: a.im + b.im });
