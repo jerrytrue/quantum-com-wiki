@@ -9,7 +9,7 @@ const state = {
   lang: localStorage.getItem('qvt-lang') || 'en',
   theme: localStorage.getItem('qvt-theme') || 'dark',
   view: localStorage.getItem('qvt-view') || 'card',
-  filters: { physics: new Set(), stack: new Set(), region: new Set(), trading: new Set(), era: new Set(), clouds: new Set(), operatingTemp: new Set(), qubitTier: new Set() },
+  filters: { physics: new Set(), stack: new Set(), region: new Set(), trading: new Set(), era: new Set(), clouds: new Set(), operatingTemp: new Set(), qubitTier: new Set(), applications: new Set() },
   search: '',
   sort: 'name',
   lastUpdated: '',
@@ -27,7 +27,8 @@ const TRADING_OPTIONS = ['public','private'];
 const ERA_OPTIONS     = ['legacy','modern','recent'];
 const CLOUD_OPTIONS      = ['aws-braket','azure-quantum','google-cloud','ibm-cloud','proprietary','on-premise'];
 const TEMP_OPTIONS       = ['dilution','mild-cryo','room','na'];
-const QUBIT_TIER_OPTIONS = ['small','medium','large','xlarge','na'];
+const QUBIT_TIER_OPTIONS    = ['small','medium','large','xlarge','na'];
+const APPLICATION_OPTIONS   = ['chemistry','optimization','ml','finance','cryptography','ftqc','sensing'];
 
 // Derive bucket keys from vendor properties for filters that aren't direct fields.
 function qubitTierOf(vendor) {
@@ -136,6 +137,9 @@ function buildFilters() {
 
   const qubitBox = document.getElementById('filter-qubitTier');
   if (qubitBox) QUBIT_TIER_OPTIONS.forEach(q => appendIfNotNull(qubitBox, makeItem('qubitTier', q)));
+
+  const appsBox = document.getElementById('filter-applications');
+  if (appsBox) APPLICATION_OPTIONS.forEach(a => appendIfNotNull(appsBox, makeItem('applications', a)));
 }
 
 function onFilterChange(e) {
@@ -290,6 +294,7 @@ function getFiltered() {
     if (filters.clouds.size && !v.clouds?.some(c => filters.clouds.has(c))) return false;
     if (filters.operatingTemp.size && !filters.operatingTemp.has(v.operatingTemp)) return false;
     if (filters.qubitTier.size && !filters.qubitTier.has(qubitTierOf(v))) return false;
+    if (filters.applications.size && !v.applications?.some(a => filters.applications.has(a))) return false;
     if (search) {
       const desc = (v.desc[state.lang] || '').toLowerCase();
       const milestone = (v.milestone[state.lang] || '').toLowerCase();

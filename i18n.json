@@ -114,7 +114,15 @@
     "qubitTier_medium": "50–500",
     "qubitTier_large": "500–5,000",
     "qubitTier_xlarge": "5,000+",
-    "qubitTier_na": "N/A (software / control)"
+    "qubitTier_na": "N/A (software / control)",
+    "applications": "Application focus",
+    "applications_chemistry": "Chemistry",
+    "applications_optimization": "Optimization",
+    "applications_ml": "ML",
+    "applications_finance": "Finance",
+    "applications_cryptography": "Cryptography",
+    "applications_ftqc": "FTQC research",
+    "applications_sensing": "Sensing"
   },
   "zh": {
     "title": "量子電腦廠商地圖",
@@ -231,6 +239,14 @@
     "qubitTier_medium": "50–500",
     "qubitTier_large": "500–5,000",
     "qubitTier_xlarge": "5,000+",
-    "qubitTier_na": "不適用（軟體 / 控制）"
+    "qubitTier_na": "不適用（軟體 / 控制）",
+    "applications": "應用領域",
+    "applications_chemistry": "化學",
+    "applications_optimization": "最佳化",
+    "applications_ml": "機器學習",
+    "applications_finance": "金融",
+    "applications_cryptography": "密碼學",
+    "applications_ftqc": "FTQC 研究",
+    "applications_sensing": "感測"
   }
 }
