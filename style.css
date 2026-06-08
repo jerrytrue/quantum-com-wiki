@@ -182,14 +182,22 @@ body {
   border-color: var(--accent-pink);
   color: var(--accent-pink);
 }
-.filter-block h3 {
+.filter-section h3 {
   margin: 18px 0 6px 0;
   font-size: 12px;
   font-weight: 600;
   color: var(--text);
   border-left: 3px solid var(--accent);
   padding-left: 8px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.filter-section h3:hover { color: var(--accent); }
+.filter-chevron { font-size: 10px; color: var(--text-dim); flex-shrink: 0; }
+.filter-section.collapsed .filter-group { display: none; }
 .filter-group {
   display: flex;
   flex-direction: column;

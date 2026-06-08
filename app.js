@@ -69,11 +69,45 @@ async function boot() {
   }
 
   buildFilters();
+  initCollapsibleFilters();
   bindEvents();
   applyLanguage();
   render();
   loadRSS();
   loadStockPrices();
+}
+
+/* ---------- Collapsible filter sections ---------- */
+const COLLAPSED_KEY = 'qvt-filter-collapsed';
+
+function initCollapsibleFilters() {
+  // Restore persisted collapsed state, then wire click handlers
+  let saved;
+  try { saved = new Set(JSON.parse(localStorage.getItem(COLLAPSED_KEY) || '[]')); } catch { saved = new Set(); }
+
+  document.querySelectorAll('.filter-section').forEach(sec => {
+    const key = sec.dataset.section;
+    // Apply persisted state (overrides HTML default)
+    if (saved.has(key)) {
+      sec.classList.add('collapsed');
+      const ch = sec.querySelector('.filter-chevron');
+      if (ch) ch.textContent = '▸';
+    } else if (!sec.classList.contains('collapsed')) {
+      const ch = sec.querySelector('.filter-chevron');
+      if (ch) ch.textContent = '▾';
+    }
+
+    sec.querySelector('h3').addEventListener('click', () => {
+      const isNowCollapsed = sec.classList.toggle('collapsed');
+      const ch = sec.querySelector('.filter-chevron');
+      if (ch) ch.textContent = isNowCollapsed ? '▸' : '▾';
+      // Persist
+      const collapsedSet = new Set(
+        [...document.querySelectorAll('.filter-section.collapsed')].map(s => s.dataset.section)
+      );
+      localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...collapsedSet]));
+    });
+  });
 }
 
 /* ---------- Filter UI ---------- */
