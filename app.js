@@ -69,12 +69,65 @@ async function boot() {
   }
 
   buildFilters();
+  buildPresets();
   initCollapsibleFilters();
   bindEvents();
   applyLanguage();
   render();
   loadRSS();
   loadStockPrices();
+}
+
+/* ---------- Filter presets ---------- */
+const FILTER_PRESETS = [
+  { id: 'public-stocks',  label: { en: 'Public stocks',       zh: '公開上市' },       apply: { trading: ['public'] } },
+  { id: 'full-stack',     label: { en: 'Full-stack',          zh: '全端廠商' },       apply: { stack: ['full'] } },
+  { id: 'neutral-atom',  label: { en: 'Neutral atom',        zh: '中性原子' },       apply: { physics: ['neutralatom'] } },
+  { id: 'recent-startups',label: { en: '2018+ startups',     zh: '2018 後新創' },    apply: { era: ['recent'] } },
+  { id: 'incumbents',    label: { en: 'Pre-2010 incumbents', zh: '老牌大廠' },       apply: { era: ['legacy'] } },
+  { id: 'controllers',   label: { en: 'Control / Cryo HW',   zh: '控制 / 低溫硬體' }, apply: { stack: ['control'] } },
+];
+
+function buildPresets() {
+  const row = document.getElementById('presetChips');
+  if (!row) return;
+  row.innerHTML = '';
+  const lang = state.lang || 'en';
+
+  const clearChip = document.createElement('button');
+  clearChip.className = 'preset-chip preset-clear';
+  clearChip.textContent = t('presets_clear') || 'Clear';
+  clearChip.addEventListener('click', () => {
+    Object.keys(state.filters).forEach(k => state.filters[k].clear());
+    document.querySelectorAll('.filter-item input').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+    render();
+  });
+  row.appendChild(clearChip);
+
+  FILTER_PRESETS.forEach(preset => {
+    const btn = document.createElement('button');
+    btn.className = 'preset-chip';
+    btn.dataset.preset = preset.id;
+    btn.textContent = preset.label[lang] || preset.label.en;
+    btn.addEventListener('click', () => {
+      // Clear all filters first
+      Object.keys(state.filters).forEach(k => state.filters[k].clear());
+      document.querySelectorAll('.filter-item input').forEach(cb => cb.checked = false);
+      // Apply preset
+      Object.entries(preset.apply).forEach(([group, vals]) => {
+        vals.forEach(val => {
+          state.filters[group].add(val);
+          const cb = document.querySelector(`input[data-group="${group}"][data-val="${val}"]`);
+          if (cb) cb.checked = true;
+        });
+      });
+      document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+    row.appendChild(btn);
+  });
 }
 
 /* ---------- Collapsible filter sections ---------- */
@@ -175,6 +228,7 @@ function bindEvents() {
   document.getElementById('langToggle').addEventListener('click', () => {
     state.lang = state.lang === 'en' ? 'zh' : 'en';
     localStorage.setItem('qvt-lang', state.lang);
+    buildPresets();
     applyLanguage();
     render();
   });

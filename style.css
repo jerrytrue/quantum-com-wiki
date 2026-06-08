@@ -361,6 +361,56 @@ body {
   font-weight: 700;
 }
 
+/* ---------- Preset chips ---------- */
+.preset-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.preset-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.preset-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.preset-chip {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.preset-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(124, 92, 255, 0.08);
+}
+.preset-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.preset-clear {
+  border-style: dashed;
+}
+.preset-clear:hover {
+  border-color: var(--accent-pink);
+  color: var(--accent-pink);
+}
+
 /* ---------- Card View ---------- */
 .card-grid {
   display: grid;
