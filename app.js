@@ -9,7 +9,7 @@ const state = {
   lang: localStorage.getItem('qvt-lang') || 'en',
   theme: localStorage.getItem('qvt-theme') || 'dark',
   view: localStorage.getItem('qvt-view') || 'card',
-  filters: { physics: new Set(), stack: new Set(), region: new Set(), trading: new Set(), era: new Set(), clouds: new Set(), operatingTemp: new Set(), qubitTier: new Set(), applications: new Set() },
+  filters: { physics: new Set(), stack: new Set(), region: new Set(), country: new Set(), trading: new Set(), era: new Set(), clouds: new Set(), operatingTemp: new Set(), qubitTier: new Set(), applications: new Set() },
   search: '',
   sort: 'name',
   lastUpdated: '',
@@ -96,10 +96,10 @@ async function boot() {
 const FILTER_PRESETS = [
   { id: 'public-stocks',  label: { en: 'Public stocks',       zh: '公開上市' },       apply: { trading: ['public'] } },
   { id: 'full-stack',     label: { en: 'Full-stack',          zh: '全端廠商' },       apply: { stack: ['full'] } },
-  { id: 'neutral-atom',  label: { en: 'Neutral atom',        zh: '中性原子' },       apply: { physics: ['neutralatom'] } },
+  { id: 'usa-only',       label: { en: 'USA only',            zh: '僅美國' },         apply: { country: ['USA'] } },
+  { id: 'europe-only',    label: { en: 'Europe only',         zh: '僅歐洲' },         apply: { region: ['europe'] } },
   { id: 'recent-startups',label: { en: '2018+ startups',     zh: '2018 後新創' },    apply: { era: ['recent'] } },
   { id: 'incumbents',    label: { en: 'Pre-2010 incumbents', zh: '老牌大廠' },       apply: { era: ['legacy'] } },
-  { id: 'controllers',   label: { en: 'Control / Cryo HW',   zh: '控制 / 低溫硬體' }, apply: { stack: ['control'] } },
 ];
 
 function buildPresets() {
@@ -390,6 +390,7 @@ function getFiltered() {
     if (filters.physics.size && !filters.physics.has(v.physics)) return false;
     if (filters.stack.size && !v.stack.some(s => filters.stack.has(s))) return false;
     if (filters.region.size && !filters.region.has(v.region)) return false;
+    if (filters.country.size && !filters.country.has(v.country)) return false;
     if (filters.trading.size && !filters.trading.has(tradingOf(v))) return false;
     if (filters.era.size && !filters.era.has(eraOf(v))) return false;
     if (filters.clouds.size && !v.clouds?.some(c => filters.clouds.has(c))) return false;
