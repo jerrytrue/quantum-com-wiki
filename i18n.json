@@ -101,7 +101,7 @@
     "presets_clear": "Clear",
     "compare_open": "Compare",
     "compare_close": "Close",
-    "compare_drawer_title": "Vendor Comparison"
+    "compare_drawer_title": "Vendor Comparison",
     "clouds": "Cloud platform",
     "clouds_aws-braket": "AWS Braket",
     "clouds_azure-quantum": "Azure Quantum",
@@ -231,7 +231,7 @@
     "presets_clear": "清除",
     "compare_open": "比較",
     "compare_close": "關閉",
-    "compare_drawer_title": "廠商比較"
+    "compare_drawer_title": "廠商比較",
     "clouds": "雲端平台",
     "clouds_aws-braket": "AWS Braket",
     "clouds_azure-quantum": "Azure Quantum",
