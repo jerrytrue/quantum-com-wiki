@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-04",
+  "lastUpdated": "2026-06-05",
   "vendors": [
     {
       "id": "ibm",
@@ -11,6 +11,10 @@
       "founded": 1980,
       "hq": "Yorktown Heights, NY, USA",
       "ticker": "IBM",
+      "clouds": ["ibm-cloud", "proprietary"],
+      "operatingTemp": "dilution",
+      "qubitCount": 1121,
+      "applications": ["chemistry", "ml", "ftqc"],
       "milestone": {
         "en": "1,121-qubit Condor (2024), Heron r2 (156q, 2024), Quantum System Two",
         "zh": "1,121 量子位元 Condor (2024)、Heron r2 (156q, 2024)、Quantum System Two"
@@ -35,6 +39,10 @@
       "founded": 2012,
       "hq": "Santa Barbara, CA, USA",
       "ticker": "GOOGL",
+      "clouds": ["google-cloud"],
+      "operatingTemp": "dilution",
+      "qubitCount": 105,
+      "applications": ["ftqc", "ml"],
       "milestone": {
         "en": "Willow chip (105q, 2024) — below-threshold error correction demonstrated",
         "zh": "Willow 晶片 (105q, 2024) — 展示低於閾值錯誤更正"
@@ -59,6 +67,10 @@
       "founded": 2013,
       "hq": "Berkeley, CA, USA",
       "ticker": "RGTI",
+      "clouds": ["aws-braket", "proprietary"],
+      "operatingTemp": "dilution",
+      "qubitCount": 84,
+      "applications": ["chemistry", "optimization"],
       "milestone": {
         "en": "Ankaa-3 (84q, 2024), modular multi-chip architecture",
         "zh": "Ankaa-3 (84q, 2024)、模組化多晶片架構"
@@ -81,6 +93,10 @@
       "country": "Finland",
       "founded": 2018,
       "hq": "Espoo, Finland",
+      "clouds": ["on-premise"],
+      "operatingTemp": "dilution",
+      "qubitCount": 54,
+      "applications": ["chemistry", "optimization"],
       "milestone": {
         "en": "IQM Radiance (54q, 2024), on-premise quantum systems for HPC centers",
         "zh": "IQM Radiance (54q, 2024)、為 HPC 中心提供 on-premise 量子系統"
@@ -103,6 +119,10 @@
       "country": "UK",
       "founded": 2017,
       "hq": "Reading, UK",
+      "clouds": ["proprietary"],
+      "operatingTemp": "dilution",
+      "qubitCount": 32,
+      "applications": ["chemistry", "optimization"],
       "milestone": {
         "en": "Toshiko (32q, 2023), Coaxmon proprietary 3D architecture",
         "zh": "Toshiko (32q, 2023)、Coaxmon 自有 3D 架構"
@@ -126,6 +146,10 @@
       "founded": 2015,
       "hq": "College Park, MD, USA",
       "ticker": "IONQ",
+      "clouds": ["aws-braket", "azure-quantum", "google-cloud", "proprietary"],
+      "operatingTemp": "room",
+      "qubitCount": 36,
+      "applications": ["chemistry", "optimization", "ml"],
       "milestone": {
         "en": "Forte Enterprise (36 algorithmic qubits, 2024), barium ion roadmap",
         "zh": "Forte Enterprise (36 algorithmic qubits, 2024)、鋇離子路線圖"
@@ -148,6 +172,10 @@
       "country": "USA",
       "founded": 2021,
       "hq": "Broomfield, CO, USA / Cambridge, UK",
+      "clouds": ["azure-quantum", "proprietary"],
+      "operatingTemp": "room",
+      "qubitCount": 56,
+      "applications": ["chemistry", "optimization", "ml"],
       "milestone": {
         "en": "H2-1 (56q, QV 2^21, 2024), highest published quantum volume",
         "zh": "H2-1 (56q, QV 2^21, 2024)、業界最高公開 quantum volume"
@@ -170,6 +198,10 @@
       "country": "UK",
       "founded": 2019,
       "hq": "Oxford, UK",
+      "clouds": [],
+      "operatingTemp": "room",
+      "qubitCount": 32,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "Electronic Qubit Control trap chips, 99.9992% 1Q gate fidelity (2024)",
         "zh": "電子式量子位元控制晶片、99.9992% 單量子位元閘保真度 (2024)"
@@ -192,6 +224,10 @@
       "country": "Austria",
       "founded": 2018,
       "hq": "Innsbruck, Austria",
+      "clouds": ["proprietary"],
+      "operatingTemp": "room",
+      "qubitCount": 24,
+      "applications": ["chemistry", "optimization"],
       "milestone": {
         "en": "PINE 24q rack-mount system, calcium ion technology spun out of Innsbruck",
         "zh": "PINE 24q 機架式系統、源於 Innsbruck 大學的鈣離子技術"
@@ -214,6 +250,10 @@
       "country": "USA",
       "founded": 2016,
       "hq": "Palo Alto, CA, USA",
+      "clouds": [],
+      "operatingTemp": "room",
+      "qubitCount": null,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "1M-qubit fault-tolerant system roadmap, Brisbane & Chicago utility-scale sites announced (2024)",
         "zh": "百萬量子位元容錯系統路線圖、Brisbane 與 Chicago 規模化站址宣布 (2024)"
@@ -236,6 +276,10 @@
       "country": "Canada",
       "founded": 2016,
       "hq": "Toronto, Canada",
+      "clouds": ["proprietary"],
+      "operatingTemp": "room",
+      "qubitCount": 216,
+      "applications": ["ml", "ftqc"],
       "milestone": {
         "en": "Borealis (216 squeezed-mode quantum advantage, 2022), Aurora networked photonic system (2024)",
         "zh": "Borealis (216 squeezed-mode 量子優勢, 2022)、Aurora 網路化光子系統 (2024)"
@@ -258,6 +302,10 @@
       "country": "UK",
       "founded": 2019,
       "hq": "London, UK",
+      "clouds": ["proprietary", "on-premise"],
+      "operatingTemp": "room",
+      "qubitCount": 8,
+      "applications": ["ml", "optimization"],
       "milestone": {
         "en": "PT-1 room-temperature photonic systems deployed at UK MOD and PSNC (2024)",
         "zh": "PT-1 室溫光子系統部署於英國國防部與 PSNC (2024)"
@@ -280,6 +328,10 @@
       "country": "USA",
       "founded": 2018,
       "hq": "Boston, MA, USA",
+      "clouds": ["aws-braket", "proprietary"],
+      "operatingTemp": "mild-cryo",
+      "qubitCount": 256,
+      "applications": ["optimization", "ftqc"],
       "milestone": {
         "en": "Aquila (256-atom, 2022), 48-logical-qubit error-corrected demo (Harvard collab, 2023)",
         "zh": "Aquila (256 原子, 2022)、48 邏輯量子位元錯誤更正展示 (與 Harvard 合作, 2023)"
@@ -302,6 +354,10 @@
       "country": "USA",
       "founded": 2018,
       "hq": "Berkeley, CA, USA",
+      "clouds": ["proprietary"],
+      "operatingTemp": "mild-cryo",
+      "qubitCount": 1225,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "1,225-site neutral atom array (2023), partnered with Microsoft on logical qubits (2024)",
         "zh": "1,225 site 中性原子陣列 (2023)、與 Microsoft 合作邏輯量子位元 (2024)"
@@ -324,6 +380,10 @@
       "country": "France",
       "founded": 2019,
       "hq": "Massy, France",
+      "clouds": ["proprietary", "azure-quantum"],
+      "operatingTemp": "mild-cryo",
+      "qubitCount": 100,
+      "applications": ["optimization", "chemistry"],
       "milestone": {
         "en": "Orion Alpha 100q+ analog system (2024), merger with Qu&Co",
         "zh": "Orion Alpha 100q+ 類比系統 (2024)、與 Qu&Co 合併"
@@ -346,6 +406,10 @@
       "country": "USA",
       "founded": 2007,
       "hq": "Boulder, CO, USA",
+      "clouds": ["proprietary"],
+      "operatingTemp": "mild-cryo",
+      "qubitCount": 100,
+      "applications": ["sensing", "ftqc"],
       "milestone": {
         "en": "Sqorpius cesium neutral atom system, Superstaq cross-platform compiler",
         "zh": "Sqorpius 銫中性原子系統、Superstaq 跨平台編譯器"
@@ -369,6 +433,10 @@
       "founded": 2015,
       "hq": "Santa Clara, CA, USA",
       "ticker": "INTC",
+      "clouds": [],
+      "operatingTemp": "dilution",
+      "qubitCount": 12,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "Tunnel Falls 12-qubit silicon spin chip (2023), Horse Ridge II cryo-CMOS controller",
         "zh": "Tunnel Falls 12 量子位元矽自旋晶片 (2023)、Horse Ridge II 低溫 CMOS 控制器"
@@ -391,6 +459,10 @@
       "country": "Australia",
       "founded": 2022,
       "hq": "Sydney, Australia",
+      "clouds": [],
+      "operatingTemp": "dilution",
+      "qubitCount": 4,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "99%+ 2Q gate fidelity in silicon CMOS spin qubits (2024)",
         "zh": "矽 CMOS 自旋量子位元 99%+ 雙量子位元閘保真度 (2024)"
@@ -413,6 +485,10 @@
       "country": "UK",
       "founded": 2017,
       "hq": "London, UK",
+      "clouds": [],
+      "operatingTemp": "dilution",
+      "qubitCount": 4,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "First full-stack silicon quantum chip on 300mm CMOS (2024)",
         "zh": "首個 300mm CMOS 全堆疊矽量子晶片 (2024)"
@@ -436,6 +512,10 @@
       "founded": 2005,
       "hq": "Redmond, WA, USA",
       "ticker": "MSFT",
+      "clouds": ["azure-quantum"],
+      "operatingTemp": "dilution",
+      "qubitCount": 8,
+      "applications": ["ftqc"],
       "milestone": {
         "en": "Majorana 1 topological chip (2025), Azure Quantum cloud, Q# language",
         "zh": "Majorana 1 拓樸晶片 (2025)、Azure Quantum 雲端、Q# 語言"
@@ -458,6 +538,10 @@
       "country": "Israel",
       "founded": 2018,
       "hq": "Tel Aviv, Israel",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": [],
       "milestone": {
         "en": "OPX1000 control platform, NVIDIA DGX Quantum collaboration (2024)",
         "zh": "OPX1000 控制平台、NVIDIA DGX Quantum 合作 (2024)"
@@ -480,6 +564,10 @@
       "country": "Switzerland",
       "founded": 2008,
       "hq": "Zurich, Switzerland",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": [],
       "milestone": {
         "en": "SHFQC qubit controller, QCCS scalable control architecture",
         "zh": "SHFQC 量子位元控制器、QCCS 可擴展控制架構"
@@ -502,6 +590,10 @@
       "country": "Netherlands",
       "founded": 2020,
       "hq": "Delft, Netherlands",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": [],
       "milestone": {
         "en": "Cluster modular control stack, Qblox-QM partnership integrations (2024)",
         "zh": "Cluster 模組化控制堆疊、Qblox-QM 合作整合 (2024)"
@@ -524,6 +616,10 @@
       "country": "Finland",
       "founded": 2007,
       "hq": "Helsinki, Finland",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": [],
       "milestone": {
         "en": "KIDE platform (large-form-factor dilution refrigerator, 2023), KF and XLDsl series",
         "zh": "KIDE 平台 (大尺寸稀釋冷凍機, 2023)、KF 與 XLDsl 系列"
@@ -546,6 +642,10 @@
       "country": "Israel",
       "founded": 2020,
       "hq": "Tel Aviv, Israel",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": ["chemistry", "optimization"],
       "milestone": {
         "en": "Classiq Studio high-level synthesis, Qmod modeling language",
         "zh": "Classiq Studio 高階綜合、Qmod 建模語言"
@@ -568,6 +668,10 @@
       "country": "USA",
       "founded": 2014,
       "hq": "Palo Alto, CA, USA",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": ["chemistry", "finance"],
       "milestone": {
         "en": "Promethium quantum chemistry platform (2024)",
         "zh": "Promethium 量子化學平台 (2024)"
@@ -590,6 +694,10 @@
       "country": "Australia",
       "founded": 2017,
       "hq": "Sydney, Australia",
+      "clouds": [],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": ["ftqc", "sensing"],
       "milestone": {
         "en": "Fire Opal performance management, Boulder Opal control suite — error-suppression layer for IBM, IonQ, Rigetti, Quantinuum",
         "zh": "Fire Opal 效能管理、Boulder Opal 控制套件 — IBM、IonQ、Rigetti、Quantinuum 的錯誤抑制層"
@@ -612,6 +720,10 @@
       "country": "USA",
       "founded": 2019,
       "hq": "Seattle, WA, USA",
+      "clouds": ["aws-braket"],
+      "operatingTemp": "na",
+      "qubitCount": null,
+      "applications": ["chemistry", "optimization", "ml"],
       "milestone": {
         "en": "Hosts IonQ, QuEra, Rigetti, IQM hardware; Braket SDK and hybrid jobs",
         "zh": "托管 IonQ、QuEra、Rigetti、IQM 硬體；Braket SDK 與混合任務"
@@ -635,6 +747,10 @@
       "founded": 1999,
       "hq": "Burnaby, BC, Canada",
       "ticker": "QBTS",
+      "clouds": ["aws-braket", "proprietary"],
+      "operatingTemp": "dilution",
+      "qubitCount": 6000,
+      "applications": ["optimization"],
       "milestone": {
         "en": "Advantage2 6,000+ qubit annealer (2025), gate-model roadmap announced",
         "zh": "Advantage2 6,000+ 量子位元退火機 (2025)、發表閘模型路線圖"
@@ -658,6 +774,10 @@
       "founded": 2018,
       "hq": "Hoboken, NJ, USA",
       "ticker": "QUBT",
+      "clouds": ["proprietary"],
+      "operatingTemp": "room",
+      "qubitCount": 100,
+      "applications": ["optimization", "finance"],
       "milestone": {
         "en": "Dirac-3 thin-film lithium niobate photonic system (2024)",
         "zh": "Dirac-3 薄膜鈮酸鋰光子系統 (2024)"
@@ -680,6 +800,10 @@
       "country": "China",
       "founded": 2017,
       "hq": "Hefei, China",
+      "clouds": ["proprietary"],
+      "operatingTemp": "dilution",
+      "qubitCount": 72,
+      "applications": ["chemistry", "optimization"],
       "milestone": {
         "en": "Wuyuan (72q, 2024), OriginQ Cloud platform",
         "zh": "悟源 (72q, 2024)、本源量子雲平台"

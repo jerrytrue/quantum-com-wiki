@@ -481,14 +481,15 @@ body {
 .vendor-table th { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* Column widths — 8 columns: Company, Physics, Stack, Region, Stock, Est., Milestone, News */
-.vendor-table th:nth-child(1), .vendor-table td:nth-child(1) { width: 16%; }                                          /* Company */
-.vendor-table th:nth-child(2), .vendor-table td:nth-child(2) { width: 16%; }                                          /* Physics */
-.vendor-table th:nth-child(3), .vendor-table td:nth-child(3) { width: 18%; }                                          /* Stack */
-.vendor-table th:nth-child(4), .vendor-table td:nth-child(4) { width: 10%; }                                          /* Region */
-.vendor-table th:nth-child(5), .vendor-table td:nth-child(5) { width: 6%;  }                                          /* Stock */
-.vendor-table th:nth-child(6), .vendor-table td:nth-child(6) { width: 8%;  text-align: center; white-space: nowrap; } /* Est. */
-.vendor-table th:nth-child(7), .vendor-table td:nth-child(7) { width: 20%; font-size: 12px; color: var(--text-dim); line-height: 1.4; } /* Milestone */
-.vendor-table th:nth-child(8), .vendor-table td:nth-child(8) { width: 6%;  text-align: center; padding-left: 4px; padding-right: 4px; } /* News */
+/* Stock bumped 6→12% so chip text doesn't bleed into Founded; taken from Stack, Milestone, Stack */
+.vendor-table th:nth-child(1), .vendor-table td:nth-child(1) { width: 14%; }                                          /* Company */
+.vendor-table th:nth-child(2), .vendor-table td:nth-child(2) { width: 15%; }                                          /* Physics */
+.vendor-table th:nth-child(3), .vendor-table td:nth-child(3) { width: 14%; }                                          /* Stack */
+.vendor-table th:nth-child(4), .vendor-table td:nth-child(4) { width: 9%;  }                                          /* Region */
+.vendor-table th:nth-child(5), .vendor-table td:nth-child(5) { width: 12%; }                                          /* Stock */
+.vendor-table th:nth-child(6), .vendor-table td:nth-child(6) { width: 7%;  text-align: center; white-space: nowrap; } /* Est. */
+.vendor-table th:nth-child(7), .vendor-table td:nth-child(7) { width: 19%; font-size: 12px; color: var(--text-dim); line-height: 1.4; } /* Milestone */
+.vendor-table th:nth-child(8), .vendor-table td:nth-child(8) { width: 10%; text-align: center; padding-left: 4px; padding-right: 4px; } /* News */
 
 /* Stock price chips */
 .chip-stock {
